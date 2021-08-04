@@ -21,6 +21,7 @@ class HomeController implements ControllerInterface
     public function invoke(): HttpResponse
     {
         $topics = Topic::findAll();
+        //$topics = [];
 
         return new HomeView($topics);
     }

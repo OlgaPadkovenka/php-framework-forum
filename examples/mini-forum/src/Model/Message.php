@@ -57,8 +57,7 @@ class Message extends AbstractModel
         ?string $date = null,
         ?int $authorId = null,
         ?int $topicId = null
-    )
-    {
+    ) {
         $this->id = $id;
         $this->content = $content;
         $this->authorId = $authorId;
@@ -75,7 +74,7 @@ class Message extends AbstractModel
      * Get identifiant en base de données
      *
      * @return  integer|null
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -85,7 +84,7 @@ class Message extends AbstractModel
      * Get contenu du message
      *
      * @return  string
-     */ 
+     */
     public function getContent()
     {
         return $this->content;
@@ -97,7 +96,7 @@ class Message extends AbstractModel
      * @param  string  $content  Contenu du message
      *
      * @return  self
-     */ 
+     */
     public function setContent(string $content)
     {
         $this->content = $content;
@@ -105,11 +104,11 @@ class Message extends AbstractModel
         return $this;
     }
 
-        /**
+    /**
      * Get date du message
      *
      * @return  \DateTime
-     */ 
+     */
     public function getDate()
     {
         return $this->date;
@@ -121,7 +120,7 @@ class Message extends AbstractModel
      * @param  \DateTime  $date  Date du message
      *
      * @return  self
-     */ 
+     */
     public function setDate(\DateTime $date)
     {
         $this->date = $date;
@@ -133,7 +132,7 @@ class Message extends AbstractModel
      * Get identifiant en base de données de l'auteur du message
      *
      * @return  User|null
-     */ 
+     */
     public function getAuthor()
     {
         return User::findById($this->authorId);
@@ -145,7 +144,7 @@ class Message extends AbstractModel
      * @param  User|null  $author  Identifiant en base de données de l'auteur du message
      *
      * @return  self
-     */ 
+     */
     public function setAuthor(?User $author)
     {
         if (is_null($author)) {
@@ -161,7 +160,7 @@ class Message extends AbstractModel
      * Retourne le sujet du message
      *
      * @return  Topic|null
-     */ 
+     */
     public function getTopic()
     {
         return Topic::findById($this->topicId);
@@ -173,7 +172,7 @@ class Message extends AbstractModel
      * @param  Topic|null  $topic  Identifiant en base du sujet du message
      *
      * @return  self
-     */ 
+     */
     public function setTopic(?Topic $topic)
     {
         if (is_null($topic)) {

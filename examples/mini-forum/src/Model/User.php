@@ -49,8 +49,7 @@ class User extends AbstractModel
         string $username = '',
         string $password = '',
         string $token = ''
-    )
-    {
+    ) {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;
@@ -61,7 +60,7 @@ class User extends AbstractModel
      * Get identifiant en base de données
      *
      * @return  integer|null
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -71,7 +70,7 @@ class User extends AbstractModel
      * Get nom de l'utilisateur
      *
      * @return  string
-     */ 
+     */
     public function getUsername()
     {
         return $this->username;
@@ -83,7 +82,7 @@ class User extends AbstractModel
      * @param  string  $username  Nom de l'utilisateur
      *
      * @return  self
-     */ 
+     */
     public function setUsername(string $username)
     {
         $this->username = $username;
@@ -95,7 +94,7 @@ class User extends AbstractModel
      * Get mot de passe de l'utilisateur
      *
      * @return  string
-     */ 
+     */
     public function getPassword()
     {
         return $this->password;
@@ -107,7 +106,7 @@ class User extends AbstractModel
      * @param  string  $password  Mot de passe de l'utilisateur
      *
      * @return  self
-     */ 
+     */
     public function setPassword(string $password)
     {
         $this->password = $password;
@@ -119,7 +118,7 @@ class User extends AbstractModel
      * Get token de l'utilisateur
      *
      * @return  string
-     */ 
+     */
     public function getToken()
     {
         return $this->token;
@@ -131,7 +130,7 @@ class User extends AbstractModel
      * @param  string  $token  Token de l'utilisateur
      *
      * @return  self
-     */ 
+     */
     public function setToken(string $token)
     {
         $this->token = $token;

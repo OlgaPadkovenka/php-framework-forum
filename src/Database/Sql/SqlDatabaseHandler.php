@@ -45,7 +45,7 @@ class SqlDatabaseHandler
         // Interpréte le contenu du fichier JSON comme un tableau associatif
         $config = \json_decode($fileContent, true);
         // TODO Vérifier que le fichier de configuration contient bien toutes les informations attendues
-
+        //dd($config);
         // Configure la connexion à la base de données
         $this->pdo = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'], $config['username'], $config['password']);
     }
@@ -89,7 +89,7 @@ class SqlDatabaseHandler
     static public function fetchWhere(string $tableName, string $columnName, string $value): array
     {
         $statement = self::getInstance()->pdo->prepare('SELECT * FROM `' . $tableName . '` WHERE `' . $columnName . '` = :value');
-        $statement->execute([ ':value' => $value ]);
+        $statement->execute([':value' => $value]);
         return $statement->fetchAll(PDO::FETCH_NUM);
     }
 
@@ -107,13 +107,13 @@ class SqlDatabaseHandler
         foreach ($data as $columnName => $value) {
             // Construit un tableau contenant tous les noms de colonnes
             // Exemple: $columnNames = [ '`title`', '`link`', ... ]
-            $columnNames []= '`' . $columnName . '`';
+            $columnNames[] = '`' . $columnName . '`';
             // Construit un tableau contenant tous les noms des champs à remplacer lors de l'exécution de la requête préparée
             // Exemple: $valueNames = [ ':title', ':link', ... ]
-            $valueNames []= ':' . $columnName;
+            $valueNames[] = ':' . $columnName;
             // Construit un tableau contenant toutes les valeurs associées au nom du champ remplaçable
             // Exemple: $parameters = [ ':title' => 'Coucou', ':link' => 'http://www.google.com', ... ];
-            $parameters [':' . $columnName] = $value;
+            $parameters[':' . $columnName] = $value;
         }
 
         $sql = 'INSERT INTO `' . $tableName . '` (' . join(', ', $columnNames) . ') VALUES (' . join(', ', $valueNames) . ')';
@@ -138,10 +138,10 @@ class SqlDatabaseHandler
         foreach ($data as $columnName => $value) {
             // Construit un tableau contenant chaque nom de colonne associé à un nom de champ à remplacer lors de l'exécution de la requête préparée
             // Exemple: $setNames = [ '`title` = :title', '`link` = :link', ... ]
-            $setNames []= '`' . $columnName . '` = :' . $columnName;
+            $setNames[] = '`' . $columnName . '` = :' . $columnName;
             // Construit un tableau contenant toutes les valeurs associées au nom du champ remplaçable
             // Exemple: $parameters = [ ':title' => 'Coucou', ':link' => 'http://www.google.com', ... ];
-            $parameters [':' . $columnName] = $value;
+            $parameters[':' . $columnName] = $value;
         }
 
         // Ajoute l'identifiant dans la liste des paramètres à remplacer lors de l'exécution
@@ -162,6 +162,6 @@ class SqlDatabaseHandler
     static public function delete(string $tableName, int $id): void
     {
         $statement = self::getInstance()->pdo->prepare('DELETE FROM `' . $tableName . '` WHERE `id` = :id');
-        $statement->execute([ ':id' => $id ]);
+        $statement->execute([':id' => $id]);
     }
 }
